@@ -1,0 +1,498 @@
+<html ng-app="flickrStreamsApp" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+	<title>Flickr Streams</title>
+	<link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="./styles/app.css" rel="stylesheet">
+	<style>
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+    }
+  </style>
+<style type="text/css"></style><script type="text/javascript" src="chrome-extension://aadgmnobpdmgmigaicncghmmoeflnamj/ng-inspector.js"></script><meta name="chromesniffer" id="chromesniffer_meta" content="{&quot;Angular&quot;:&quot;1.5.0&quot;}"><script type="text/javascript" src="chrome-extension://homgcnaoacgigpkkljjjekpignblkeae/detector.js"></script><link rel="stylesheet" type="text/css" href="chrome-extension://aedmpdookgbneegaeajpoldpnpfbpmlb/css/page.css?r=80911874.0461368"></head>
+<body>
+
+<div id="main-wrapper" ng-controller="mainController as vm" class="ng-scope">
+
+	<header>
+		<nav class="navbar navbar-default navbar-custom">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-toggle-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Flickr Streams</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="nav-toggle-1">
+		      <form class="navbar-form navbar-left ng-pristine ng-valid" role="search">
+		        <div class="input-group">
+  		        <!-- Search Tag -->
+  			      <input type="text" class="form-control input-custom ng-pristine ng-valid ng-empty ng-touched" placeholder="Search Flickr images here... After input, Press Enter" id="searchtag" ng-model="vm.flickertags" ng-keypress="vm.loadFlickerUrl($event)" autofocus="">
+  			      <!--<span class="input-group-btn" ng-click="vm.loadFlickerUrl($event)">-->
+  			      <!--  <button class="btn btn-default btn-primary" type="button"><i class="fa fa-search"></i></button>-->
+  			      <!--</span>-->
+			      </div><!-- /input-group -->
+		      </form>
+		      <div class="pull-right grid-btn">
+		      	<i class="fa fa-th fa-2x"></i> <i class="fa fa-list fa-2x"></i>
+		      </div>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+	</header>
+
+	<content id="main-container" role="content-area">
+		<div class="container-fluid">
+  		<!-- row -->
+  		<!--<div class="row">-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/1.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/2.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/3.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/4.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/10.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/8.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  			<!-- after six col -->
+  		<!--	<div class="clearfix custom-row"></div>-->
+  			<!-- /end -->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/5.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/6.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/7.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/8.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/2.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/7.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--</div>-->
+  		<div class="row">
+  		  <!-- ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7622/26341853724_202ac12701_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7622/26341853724_202ac12701_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7622/26341853724_202ac12701_m.jpg">
+    							<div class="thumb-title ng-binding">Desayunos con mucha miga... preparados horas antes y con el mejor producto. 72h de energía... #catering #instafood #food #photofood #business #womanbusiness#cocinacasera #mariafogones www.mariafogones.com mar@mariafogones.com tlf 682500072 #foodie #foo</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7063/26341854294_fcc0b5a091_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7063/26341854294_fcc0b5a091_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7063/26341854294_fcc0b5a091_m.jpg">
+    							<div class="thumb-title ng-binding">Untitled-16.jpg</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7203/26342774903_96676e01cb_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7203/26342774903_96676e01cb_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7203/26342774903_96676e01cb_m.jpg">
+    							<div class="thumb-title ng-binding">Cambrian Way Day 9</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7653/26342775093_e11b2fc5a5_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7653/26342775093_e11b2fc5a5_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7653/26342775093_e11b2fc5a5_m.jpg">
+    							<div class="thumb-title ng-binding">Miki</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7229/26342775933_cb68338299_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7229/26342775933_cb68338299_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7229/26342775933_cb68338299_m.jpg">
+    							<div class="thumb-title ng-binding">1989_A14_Toledo_Pontevedra_017</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7703/26673930610_27aa26abb3_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7703/26673930610_27aa26abb3_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7703/26673930610_27aa26abb3_m.jpg">
+    							<div class="thumb-title ng-binding">12362655_942959265769318_1552921655209936323_o</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7288/26673930680_062130b08a_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7288/26673930680_062130b08a_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7288/26673930680_062130b08a_m.jpg">
+    							<div class="thumb-title ng-binding">Alert from camera: CD4DBDMPDARBB4PPYZW1</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7127/26673931300_15ed7f5eee_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7127/26673931300_15ed7f5eee_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7127/26673931300_15ed7f5eee_m.jpg">
+    							<div class="thumb-title ng-binding">starr-160210-3742-Cenchrus_clandestinus-lush_growth_cows_in_far_pasture-Hawea_Pl_Olinda-Maui</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7049/26673931400_5d4dcf182d_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7049/26673931400_5d4dcf182d_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7049/26673931400_5d4dcf182d_m.jpg">
+    							<div class="thumb-title ng-binding">IMG_20160225_135135</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7623/26673931460_ecc1d3cda8_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7623/26673931460_ecc1d3cda8_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7623/26673931460_ecc1d3cda8_m.jpg">
+    							<div class="thumb-title ng-binding"> </div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7237/26673932090_b9b34e9bc1_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7237/26673932090_b9b34e9bc1_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7237/26673932090_b9b34e9bc1_m.jpg">
+    							<div class="thumb-title ng-binding">Der Hochgern am 11.05.2016 um 9 Uhr und 04 Minuten</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7500/26853024962_2784eb0417_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7500/26853024962_2784eb0417_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7500/26853024962_2784eb0417_m.jpg">
+    							<div class="thumb-title ng-binding">DSC_0171.jpg</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7539/26853025232_46cce64883_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7539/26853025232_46cce64883_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7539/26853025232_46cce64883_m.jpg">
+    							<div class="thumb-title ng-binding">Selection of photos from my 12k walk on Monday. Went to look at a beautiful old building at Hoober Stand. 😄😄😄</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7563/26853026032_40e699bea9_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7563/26853026032_40e699bea9_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7563/26853026032_40e699bea9_m.jpg">
+    							<div class="thumb-title ng-binding"> </div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7779/26853026622_e2c8d75bd5_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7779/26853026622_e2c8d75bd5_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7779/26853026622_e2c8d75bd5_m.jpg">
+    							<div class="thumb-title ng-binding">JAKET SWEATER &amp; HOODIE Bahan: Cotton Fleece Ukuran: M &amp; L Brand: Lihat Foto HARGA - Rp 169.000,-/pcs (belum ongkir) - (Reseller &amp; Grosir Tentu Lebih Murah Lagi) 💑 ayok tunggu apa lagi langsung contact: Wa: 081311221179, BBM : 5B580D5F</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7578/26879124311_31f9f7c52c_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7578/26879124311_31f9f7c52c_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7578/26879124311_31f9f7c52c_m.jpg">
+    							<div class="thumb-title ng-binding">#pavillonj #uqam #mtl #3e #fenêtres #matin</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7550/26947466325_5953d77501_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7550/26947466325_5953d77501_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7550/26947466325_5953d77501_m.jpg">
+    							<div class="thumb-title ng-binding">#tabaimo @tabaimoherroom #art #artist #sanjosemuseumofart #sanjoseca #sanjose #instalation #instalationart</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7530/26947466575_1862933097_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7530/26947466575_1862933097_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7530/26947466575_1862933097_m.jpg">
+    							<div class="thumb-title ng-binding"> </div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7177/26947466735_5c392aebe4_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7177/26947466735_5c392aebe4_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7177/26947466735_5c392aebe4_m.jpg">
+    							<div class="thumb-title ng-binding">IMG_5653.jpg</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams --><div ng-repeat="fs in vm.flickerStreams" class="ng-scope">
+    			<div class="col-sm-2 custom-padding text-center">
+    				<div class="image-wrapper">
+    					<div class="image-container">
+    						<a href="https://farm8.staticflickr.com/7573/26947467055_23179586e1_m.jpg" target="_blank" class="image-item">
+    							<img ng-src="https://farm8.staticflickr.com/7573/26947467055_23179586e1_m.jpg" class="img-responsive" src="https://farm8.staticflickr.com/7573/26947467055_23179586e1_m.jpg">
+    							<div class="thumb-title ng-binding">WOMEN'S black tshirt</div>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    			<!-- after six col -->
+  			  <!--<div ng-class="{ 'clearfix': $index>0 && $index%6==0, 'custom-row': $index>0 && $index%6==0 }"></div>-->
+  			  <!--<div class="clearfix custom-row"></div>-->
+  			  <!-- /end -->
+  			</div><!-- end ngRepeat: fs in vm.flickerStreams -->
+  		</div>
+  		
+		</div>
+	</content>
+
+	<footer>
+		<p class="text-center">copyright © All rights reserved</p>
+	</footer>
+
+</div>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--<script src="./assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+<script type="text/javascript" src="./scripts/app.js"></script>
+
+<div style="display:none;" id="px_data"><span id="px_path">chrome-extension://aedmpdookgbneegaeajpoldpnpfbpmlb/</span><span id="px_techs">twitter-bootstrap
+jquery
+js-angular
+google-developers</span><span id="px_show"></span></div></body></html>

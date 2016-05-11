@@ -1,0 +1,156 @@
+html,
+body {
+	font-family: arial;
+	font-size: 12px;
+	height: 100%;
+}
+ul, ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.clearfix {
+	clear: both;
+}
+
+#main-wrapper {
+	background: white;
+}
+
+header {
+	padding: 5px 10px;
+	width: 100%;
+	background: #f1f1f1;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.navbar-default {
+	border: none;
+	border-radius: 0;
+	margin: 0;
+	background: white;
+}
+
+.navbar-custom {
+	background: none;
+}
+
+.navbar-form {
+	width: 45%;
+}
+
+@media screen and (max-width: 767px) {
+	.navbar-form {
+		width: 100%;
+	}
+}
+
+.navbar-form .input-group {
+	width: 100%;
+}
+
+.navbar-form .input-group>.input-custom {
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	/*border-right: none;*/
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.navbar-form .input-group>.input-custom:focus {
+	border: 1px solid #4285f4;
+	/*border-right: none;*/
+}
+
+.input-group-btn > button {
+	border-radius: 0;
+	border-left: none;
+	width: 40px;
+}
+
+.grid-btn {
+	margin-top: 14px;
+	cursor: pointer;
+}
+
+.grid-btn i {
+	margin-left: 20px;
+}
+
+/**/
+
+.row {
+	margin-bottom: 4px;
+}
+
+.custom-row {
+	margin-bottom: 4px;
+}
+
+.custom-padding {
+	padding-left: 2px;
+	padding-right: 2px;
+	height: 100%;
+	display: table;
+	min-height: 120px;
+	overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+	.custom-padding {
+		margin-bottom: 6px;
+	}
+}
+
+.image-wrapper {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.image-container {
+	position: relative;
+}
+
+.thumb-title {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: rgba(0, 0, 0, 0.5);
+	line-height: 32px;
+	color: white;
+	padding: 0 14px;
+}
+
+.image-container .thumb-title {
+	opacity: 0;
+	transition: opacity 0.3s linear;
+}
+
+.image-container:hover .thumb-title {
+	opacity: 1;
+}
+
+
+.custom-margin-bottom {
+	margin-bottom: 10px;
+}
+
+#navigation {
+	padding: 0px 20px 0px 40px;
+}
+
+footer {
+	border-top: 1px solid #f1f1f1;
+	line-height: 28px;
+	padding-top: 8px;
+	margin-top: 30px;
+}
+
+.centerBlock {
+    display: table;
+    margin: 0 auto;
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html ng-app="flickrStreamsApp">
+<head>
+	<title>Flickr Streams</title>
+	<link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="./styles/app.css" rel="stylesheet">
+	<style>
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<div id="main-wrapper" ng-controller = "mainController as vm" ng-cloak>
+
+	<header>
+		<nav class="navbar navbar-default navbar-custom">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-toggle-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Flickr Streams</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="nav-toggle-1">
+		      <form class="navbar-form navbar-left" role="search">
+		        <div class="input-group">
+  		        <!-- Search Tag -->
+  			      <input type="text" class="form-control input-custom" placeholder="Search Flickr images here... After input, Press Enter" id="searchtag" ng-model="vm.flickertags" ng-keypress="vm.loadFlickerUrl($event)" autofocus>
+  			      <!--<span class="input-group-btn" ng-click="vm.loadFlickerUrl($event)">-->
+  			      <!--  <button class="btn btn-default btn-primary" type="button"><i class="fa fa-search"></i></button>-->
+  			      <!--</span>-->
+			      </div><!-- /input-group -->
+		      </form>
+		      <div class="pull-right grid-btn">
+		      	<i class="fa fa-th fa-2x"></i> <i class="fa fa-list fa-2x"></i>
+		      </div>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+	</header>
+
+	<content id="main-container" role="content-area">
+		<div class="container-fluid">
+  		<!-- row -->
+  		<!--<div class="row">-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/1.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/2.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/3.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/4.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/10.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/8.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  			<!-- after six col -->
+  		<!--	<div class="clearfix custom-row"></div>-->
+  			<!-- /end -->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/5.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/6.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/7.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/8.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/2.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--	<div class="col-sm-2 custom-padding">-->
+  		<!--		<div class="image-wrapper">-->
+  		<!--			<div class="image-container">-->
+  		<!--				<a href="#" class="image-item">-->
+  		<!--					<img src="images/7.jpg" class="img-responsive">-->
+  		<!--					<div class="thumb-title">Image One</div>-->
+  		<!--				</a>-->
+  		<!--			</div>-->
+  		<!--		</div>-->
+  		<!--	</div>-->
+  		<!--</div>-->
+  		<div ng-repeat="fs in vm.flickerStreams">
+  		<div class="row" ng-if="$index%6==0">
+  			<div class="col-sm-2 custom-padding" ng-if="$index<vm.flickerStreams.length">
+  				<div class="image-wrapper">
+  					<div class="image-container">
+  						<a href="{{vm.flickerStreams[$index].media.m}}" target="_blank" class="image-item">
+  							<img ng-src="{{vm.flickerStreams[$index].media.m}}" class="img-responsive">
+  							<div class="thumb-title">{{vm.flickerStreams[$index].title}}</div>
+  						</a>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-sm-2 custom-padding" ng-if="$index+1<vm.flickerStreams.length">
+  				<div class="image-wrapper">
+  					<div class="image-container">
+  						<a href="{{vm.flickerStreams[$index+1].media.m}}" target="_blank" class="image-item">
+  							<img ng-src="{{vm.flickerStreams[$index+1].media.m}}" class="img-responsive">
+  							<div class="thumb-title">{{vm.flickerStreams[$index+1].title}}</div>
+  						</a>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-sm-2 custom-padding" ng-if="$index+2<vm.flickerStreams.length">
+  				<div class="image-wrapper">
+  					<div class="image-container">
+  						<a href="{{vm.flickerStreams[$index+2].media.m}}" target="_blank" class="image-item">
+  							<img ng-src="{{vm.flickerStreams[$index+2].media.m}}" class="img-responsive">
+  							<div class="thumb-title">{{vm.flickerStreams[$index+2].title}}</div>
+  						</a>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-sm-2 custom-padding" ng-if="$index+3<vm.flickerStreams.length">
+  				<div class="image-wrapper">
+  					<div class="image-container">
+  						<a href="{{vm.flickerStreams[$index+3].media.m}}" target="_blank" class="image-item">
+  							<img ng-src="{{vm.flickerStreams[$index+3].media.m}}" class="img-responsive">
+  							<div class="thumb-title">{{vm.flickerStreams[$index+3].title}}</div>
+  						</a>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-sm-2 custom-padding" ng-if="$index+4<vm.flickerStreams.length">
+  				<div class="image-wrapper">
+  					<div class="image-container">
+  						<a href="{{vm.flickerStreams[$index+4].media.m}}" target="_blank" class="image-item">
+  							<img ng-src="{{vm.flickerStreams[$index+4].media.m}}" class="img-responsive">
+  							<div class="thumb-title">{{vm.flickerStreams[$index+4].title}}</div>
+  						</a>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-sm-2 custom-padding" ng-if="$index+5<vm.flickerStreams.length">
+  				<div class="image-wrapper">
+  					<div class="image-container">
+  						<a href="{{vm.flickerStreams[$index+5].media.m}}" target="_blank" class="image-item">
+  							<img ng-src="{{vm.flickerStreams[$index+5].media.m}}" class="img-responsive">
+  							<div class="thumb-title">{{vm.flickerStreams[$index+5].title}}</div>
+  						</a>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		</div>
+		</div>
+	</content>
+
+	<footer>
+		<p class="text-center">copyright &copy; All rights reserved</p>
+	</footer>
+
+</div>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--<script src="./assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+<script type="text/javascript" src='./scripts/app.js'></script>
+</body>
+</html>
